@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+    $(document).ready(function () {
+    $(document).on('mouseenter', '.divbutton', function () {
+    $(this).find(":a").show();
+    }).on('mouseleave', '.divbutton', function () {
+    $(this).find(":a").hide();
+    });
+    });
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <article class="col-md-12">
+            <h1>Bonjour ma chérie :-D</h1>
+            <hr>
+            <h3>{{ message }}</h3>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="{{ path('appointment_admin', { 'number_week': number_week - 1 }) }}" class="glyphicon glyphicon-triangle-left btn btn-default pull-left" title="Semaine précédente"></a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="{{ path('appointment_admin', { 'number_week': 0 }) }}" class="glyphicon glyphicon-grain btn btn-default" title="Semaine actuelle"></a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('appointment_admin', { 'number_week': number_week + 1 }) }}" class="glyphicon glyphicon-triangle-right btn btn-default pull-right" title="Semaine suivante"></a>
+                </div>
+            </div>
+
+
+
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="list-group">
+                            <li class="list-group-item active text-center">
+                                Heure
+                            </li>
+                            {% for schedule in schedules %}
+                                <li class="list-group-item">{{ schedule.time|date("H:i") }}</li>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% for appointments in appointments_week %}
+                        <div class="col-md-2">
+                            <div class="list-group">
+                                <li class="list-group-item active text-center">
+                                    {{ appointments|first|date("d/m/Y") }}
+                                </li>
+                                {% if appointments|length > 1 %}
+                                    {% for schedule in schedules%}
+                                        {% set break = false %}
+                                        {% set flag = false %}
+                                        {% for appointment in appointments|slice(1, appointments|length - 1) if not break  %}
+                                            {% if appointment.date|date('H:i') == schedule.time|date('H:i') %}
+                                                {% set break = true %}
+                                                {% set flag = true %}
+                                                {% if appointment.users|length > 0 %}
+                                                    <li class="list-group-item" id="id_button_parent">
+                                                        {% for user in appointment.users %}
+                                                            {% if appointment.theme != null %}
+                                                                <a href="{{ path('user_historic', { 'id': user.id }) }}">{{ user }}</a>
+                                                            {% else %}
+                                                                <a href="{{ path('theme_new', { 'id': appointment.id }) }}">{{ user }}</a>
+                                                            {% endif %}
+                                                            {% if appointment.date > date()|date_modify("+1 day") %}
+                                                                <a href="{{ path('appointment_change', { 'id': appointment.id }) }}" class="glyphicon glyphicon-transfer btn-xs btn btn-default divbutton" title="Migrer le rendez-vous"></a>
+                                                                <a href="{{ path('appointment_delete', { 'id': appointment.id }) }}" class="glyphicon glyphicon-remove btn-xs btn btn-default divbutton" title="Supprimer le rendez-vous"></a>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </li>
+                                                {% else %}
+                                                    <li class="list-group-item" title="{{ appointment.date|date('H:i') }} -> {{ appointment.date|date_modify('+1 hour')|date('H:i') }}">
+                                                        {{ appointment.date|date('H:i') }}
+                                                        <div class="btn-group pull-right btn-group-xs btn-group-hover" role="group">
+                                                            <a href="{{ path('appointment_delete', { 'id': appointment.id }) }}" class="glyphicon glyphicon-remove btn-xs btn btn-default" title="Supprimer le rendez-vous"></a>
+                                                        </div>
+                                                    </li>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if flag == false %}
+                                            <li class="list-group-item disabled">Pas de RDV</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    {% for schedule in schedules %}
+                                        <li class="list-group-item disabled">Pas de RDV</li>
+                                    {% endfor %}
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </article>
+    </div>
+{% endblock %}

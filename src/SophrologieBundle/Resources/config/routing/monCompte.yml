@@ -1,0 +1,24 @@
+monCompte_index:
+    path:     /
+    defaults: { _controller: "SophrologieBundle:MonCompte:index" }
+    methods:  GET
+
+monCompte_user:
+    path:     /parametres
+    defaults: { _controller: "SophrologieBundle:MonCompte:user" }
+    methods:  GET
+
+monCompte_userUniq:
+    path:     /{id}/parametres
+    defaults: { _controller: "SophrologieBundle:MonCompte:userUniq" }
+    methods:  GET
+
+monCompte_changePWD:
+    path:     /changerMotDePasse
+    defaults: { _controller: "SophrologieBundle:MonCompte:changePWD" }
+    methods:  [GET, POST]
+
+monCompte_takeRDV:
+    path:     /prendreRendezVous/{id}/{number_week}
+    defaults: { _controller: "SophrologieBundle:MonCompte:takeRDV", number_week: 0 }
+    methods:  GET

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <article class="col-md-12">
+            <div class="page-header">
+                <h1>Liste des rôles</h1>
+            </div>
+            <div class="well">
+                <a href="{{ path('role_new') }}" class="btn btn-primary">Ajouter un nouveau rôle</a>
+
+                <hr />
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for role in roles %}
+                        <tr>
+                            <td>{{ role.name }}</td>
+                            <td class="btn-group" role="group">
+                                <a href="{{ path('role_edit', { 'id': role.id }) }}" class="btn btn-default btn-xs">Modifier</a>
+                                <a href="{{ path('role_delete', { 'id': role.id }) }}" class="btn btn-default btn-xs">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </article>
+    </div>
+{% endblock %}

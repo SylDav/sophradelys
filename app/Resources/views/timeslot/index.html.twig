@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <article class="col-md-12">
+        <div class="page-header">
+            <h1>Liste des plages horaires</h1>
+        </div>
+        <div class="well">
+            <a href="{{ path('timeslot_new') }}" class="btn btn-primary">Ajouter une plage horaire</a>
+
+            <hr />
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Début</th>
+                        <th>Fin</th>
+                        <th>Commentaire</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for timeslot in timeslots %}
+                    <tr>
+                        <td>{% if timeslot.begin %}{{ timeslot.begin|date('d/m/Y H:i:s') }}{% endif %}</td>
+                        <td>{% if timeslot.end %}{{ timeslot.end|date('d/m/Y H:i:s') }}{% endif %}</td>
+                        <td>{{ timeslot.commentary }}</td>
+                        <td class="btn-group">
+                            <a href="{{ path('timeslot_edit', { 'id': timeslot.id }) }}" class="btn btn-default btn-xs">Modifier</a>
+                            <a href="{{ path('timeslot_delete', { 'id': timeslot.id }) }}" class="btn btn-default btn-xs">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </article>
+</div>
+{% endblock %}

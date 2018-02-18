@@ -1,0 +1,24 @@
+SophrologieBundle\Entity\Timeslot:
+    type: entity
+    table: null
+    repositoryClass: SophrologieBundle\Repository\TimeslotRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        begin:
+            type: datetime
+        end:
+            type: datetime
+        commentary:
+            type: text
+    lifecycleCallbacks: {  }
+    oneToMany:
+        appointments:
+            targetEntity: Appointment
+            mappedBy: timeslot
+            orphanRemoval: true
+            cascade: [ persist ]

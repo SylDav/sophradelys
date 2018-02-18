@@ -1,0 +1,28 @@
+SophrologieBundle\Entity\Theme:
+    type: entity
+    table: null
+    repositoryClass: SophrologieBundle\Repository\ThemeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        enabled:
+            type: boolean
+    lifecycleCallbacks: {  }
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: themes
+            cascade: [ persist ]
+    oneToMany:
+        appointments:
+            targetEntity: Appointment
+            mappedBy: theme
+            cascade: [ persist ]
+

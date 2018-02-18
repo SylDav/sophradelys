@@ -1,0 +1,51 @@
+sophrologie_role:
+    resource: "@SophrologieBundle/Resources/config/routing/role.yml"
+    prefix:   /role
+
+sophrologie_user:
+    resource: "@SophrologieBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+sophrologie_appointment:
+    resource: "@SophrologieBundle/Resources/config/routing/appointment.yml"
+    prefix:   /appointment
+
+sophrologie_firstAppointment:
+    resource: "@SophrologieBundle/Resources/config/routing/firstAppointment.yml"
+    prefix:   /firstAppointment
+
+sophrologie_timeslot:
+    resource: "@SophrologieBundle/Resources/config/routing/timeslot.yml"
+    prefix:   /timeslot
+
+sophrologie_appointmentType:
+    resource: "@SophrologieBundle/Resources/config/routing/appointmenttype.yml"
+    prefix:   /appointmentType
+
+sophrologie_schedule:
+    resource: "@SophrologieBundle/Resources/config/routing/schedule.yml"
+    prefix:   /schedule
+
+sophrologie_theme:
+    resource: "@SophrologieBundle/Resources/config/routing/theme.yml"
+    prefix:   /theme
+
+sophrologie_monCompte:
+    resource: "@SophrologieBundle/Resources/config/routing/monCompte.yml"
+    prefix:   /monCompte
+
+
+login:
+    path: /login
+    defaults: { _controller: SophrologieBundle:Security:login }
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+
+sophrologie_homepage:
+    path:     /
+    defaults: { _controller: SophrologieBundle:Default:index }

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rôle</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ role.name }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ role.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('role_index') }}">Retour</a>
+        </li>
+    </ul>
+{% endblock %}

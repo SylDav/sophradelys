@@ -1,0 +1,9 @@
+firstAppointment_index:
+    path:     /{number_week}
+    defaults: { _controller: "SophrologieBundle:firstAppointment:index", number_week: 0 }
+    methods:  GET
+
+firstAppointment_takeFirst:
+    path:     /{id}/confirm
+    defaults: { _controller: "SophrologieBundle:firstAppointment:confirm" }
+    methods:  [GET, POST]

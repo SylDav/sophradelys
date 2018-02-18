@@ -1,0 +1,19 @@
+SophrologieBundle\Entity\Role:
+    type: entity
+    table: null
+    repositoryClass: SophrologieBundle\Repository\RoleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '20'
+    lifecycleCallbacks: {  }
+    manyToMany:
+        users:
+            targetEntity: User
+            inversedBy: roles

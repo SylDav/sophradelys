@@ -1,0 +1,56 @@
+appointment_index:
+    path:     /index/{id}/{number_week}
+    defaults: { _controller: "SophrologieBundle:Appointment:index", number_week: 0 }
+    methods:  GET
+
+appointment_show:
+    path:     /{id}/show
+    defaults: { _controller: "SophrologieBundle:Appointment:show" }
+    methods:  GET
+
+appointment_new:
+    path:     /new
+    defaults: { _controller: "SophrologieBundle:Appointment:new" }
+    methods:  [GET, POST]
+
+appointment_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SophrologieBundle:Appointment:edit" }
+    methods:  [GET, POST]
+
+appointment_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SophrologieBundle:Appointment:delete" }
+    methods:  GET
+
+appointment_admin:
+    path:     /admin/{number_week}
+    defaults: { _controller: "SophrologieBundle:Appointment:admin", number_week: 0 }
+    methods:  GET
+
+
+appointment_takeRDV:
+    path:     /prendreRendezVous/{id}/{number_week}
+    defaults: { _controller: "SophrologieBundle:MonCompte:takeRDV", number_week: 0 }
+    methods:  GET
+
+appointment_take:
+    path:     /{appointment_old}/take/{appointment_new}
+    defaults: { _controller: "SophrologieBundle:Appointment:takeAppointment" }
+    methods:  GET
+
+appointment_change:
+    path:     /{id}/change/{number_week}
+    defaults: { _controller: "SophrologieBundle:Appointment:changeAppointment", number_week: 0 }
+    methods:  GET
+
+appointment_confirmChange:
+    path:     /{appointment_old}/{appointment_new}/confirmChange
+    defaults: { _controller: "SophrologieBundle:Appointment:confirmChangeAppointment" }
+    methods:  [GET, POST]
+
+appointment_seance:
+    path:     /{id}/seance
+    defaults: { _controller: "SophrologieBundle:Appointment:addSeance" }
+    methods:  [GET, POST]
+

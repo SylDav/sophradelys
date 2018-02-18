@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <article class="col-md-12">
+        <div class="page-header">
+            <a href="{{ path('appointmenttype_index') }}" class="btn btn-success pull-right">Retour</a>
+            <h1>Type de rendez-vous "{{ appointmentType.name }}"</h1>
+        </div>
+        <div class="well">
+            <a href="{{ path('appointmenttype_edit', { 'id': appointmentType.id }) }}" class="btn btn-primary">Modifier</a>
+            <hr />
+
+            <table class="table table-striped">
+
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ appointmentType.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ appointmentType.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Durée</th>
+                        <td>{{ appointmentType.time }}</td>
+                    </tr>
+                    <tr>
+                        <th>Couleur</th>
+                        <td>{{ appointmentType.color }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </article>
+    </div>
+{% endblock %}

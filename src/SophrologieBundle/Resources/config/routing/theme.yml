@@ -1,0 +1,25 @@
+theme_index:
+    path:     /
+    defaults: { _controller: "SophrologieBundle:Theme:index" }
+    methods:  GET
+
+theme_show:
+    path:     /{id}/show
+    defaults: { _controller: "SophrologieBundle:Theme:show" }
+    methods:  GET
+
+theme_new:
+    path:     /{id}/new
+    defaults: { _controller: "SophrologieBundle:Theme:new" }
+    methods:  [GET, POST]
+
+theme_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SophrologieBundle:Theme:edit" }
+    methods:  [GET, POST]
+
+theme_disable:
+    path:     /{id}/disable
+    defaults: { _controller: "SophrologieBundle:Theme:disable" }
+    methods:  [GET, POST]
+

@@ -1,0 +1,46 @@
+SophrologieBundle\Entity\Appointment:
+    type: entity
+    table: null
+    repositoryClass: SophrologieBundle\Repository\AppointmentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+            nullable: yes
+            unique: yes
+        commentary:
+            type: text
+            nullable: yes
+        commentary_client:
+            type: text
+            nullable: yes
+        taking:
+            type: datetime
+            nullable: yes
+        title:
+            type: string
+            nullable: yes
+        commentary_seance:
+            type: text
+            nullable: yes
+    lifecycleCallbacks: {  }
+    manyToMany:
+        users:
+            targetEntity: User
+            inversedBy: appointments
+            cascade: [ persist ]
+    manyToOne:
+        appointmentType:
+            targetEntity: AppointmentType
+            inversedBy: appointments
+            cascade: [ persist ]
+        theme:
+            targetEntity: Theme
+            inversedBy: appointments
+            cascade: [ persist ]
+

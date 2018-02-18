@@ -1,0 +1,243 @@
+<?php
+
+namespace SophrologieBundle\Entity;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+/**
+ * Account
+ */
+class Account implements UserInterface, \Serializable
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Account
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Account
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $users;
+
+    /**
+     * @var \SophrologieBundle\Entity\Role
+     */
+    private $role;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \SophrologieBundle\Entity\User $user
+     *
+     * @return Account
+     */
+    public function addUser(\SophrologieBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \SophrologieBundle\Entity\User $user
+     */
+    public function removeUser(\SophrologieBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set role
+     *
+     * @param \SophrologieBundle\Entity\Role $role
+     *
+     * @return Account
+     */
+    public function setRole(\SophrologieBundle\Entity\Role $role = null)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return \SophrologieBundle\Entity\Role
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+    /**
+     * @var string
+     */
+    private $username;
+
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return Account
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function getSalt(){
+        return '';
+    }
+
+    public function getRoles()
+    {
+        return $this->roles->toArray();
+    }
+
+    public function eraseCredentials(){
+
+    }
+
+    public function serialize(){
+        return serialize(array($this->id, $this->username, $this->password));
+    }
+
+    public function unserialize($seralized){
+        list($this->id, $this->username, $this->password) = unserialize($seralized);
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $roles;
+
+
+    /**
+     * Add role
+     *
+     * @param \SophrologieBundle\Entity\Role $role
+     *
+     * @return Account
+     */
+    public function addRole(\SophrologieBundle\Entity\Role $role)
+    {
+        $this->roles[] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Remove role
+     *
+     * @param \SophrologieBundle\Entity\Role $role
+     */
+    public function removeRole(\SophrologieBundle\Entity\Role $role)
+    {
+        $this->roles->removeElement($role);
+    }
+
+    public function __toString()
+    {
+        return $this->username;
+    }
+}

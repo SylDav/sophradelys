@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <article class="col-md-12">
+            <div class="page-header">
+                <h1>Bienvenue sur votre espace Client.</h1>
+            </div>
+            <div class="well">
+
+                {% if user.commentary != null %}
+                    <h2>Remarque :</h2>
+                    {{ user.commentary }}
+                {% endif %}
+                {% for appointments in tableau %}
+                    <div class="row">
+                        {% for appointment in appointments|slice(0,1) %}
+                            <div class="col-md-12">
+                                <div class="list-group">
+                                    <li class="list-group-item active">
+                                        <u>Thème du suivi :</u> {{ appointment.theme }}
+                                    </li>
+                                </div>
+                                <br />
+                            </div>
+                        {% endfor %}
+                        {% for appointment in appointments %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <div class="list-group">
+                                            <li class="list-group-item">
+                                                {% if appointment.date != null %}
+                                                    <u>Séance {{ loop.index - 1 }} :</u>
+                                                    {{ appointment.date|date('d/m/Y H:i') }}
+                                                {% else %}
+                                                    <u>Séance {{ loop.index - 1 }} :</u>
+                                                    <a href="{{ path('appointment_takeRDV', {'id': appointment.id}) }}"><i>Rendez-vous à prévoir</i></a>
+                                                {% endif %}
+                                            </li>
+                                        </div>
+                                    </div>
+
+                                    <textarea style="max-width: 66.666666%;" class="col-md-8">{% if appointment.commentaryClient != null %}{{ appointment.commentaryClient }}{% endif %}</textarea>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </article>
+    </div>
+{% endblock %}

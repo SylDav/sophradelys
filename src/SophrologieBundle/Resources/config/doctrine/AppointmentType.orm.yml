@@ -1,0 +1,27 @@
+SophrologieBundle\Entity\AppointmentType:
+    type: entity
+    table: null
+    repositoryClass: SophrologieBundle\Repository\AppointmentTypeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '30'
+        time:
+            type: integer
+        color:
+            type: string
+            length: '15'
+    lifecycleCallbacks: {  }
+    oneToMany:
+        appointments:
+            targetEntity: Appointment
+            mappedBy: appointmentType
+            orphanRemoval: true
+            cascade: [ persist ]
+

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Timeslot</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ timeslot.id }}</td>
+            </tr>
+            <tr>
+                <th>Begin</th>
+                <td>{% if timeslot.begin %}{{ timeslot.begin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{% if timeslot.end %}{{ timeslot.end|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Commentary</th>
+                <td>{{ timeslot.commentary }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('timeslot_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('timeslot_edit', { 'id': timeslot.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

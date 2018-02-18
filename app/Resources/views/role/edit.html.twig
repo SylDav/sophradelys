@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <article class="col-md-12">
+        <div class="page-header">
+            <a href="{{ path('role_index') }}" class="btn btn-success pull-right">Retour</a>
+            <h1>Modifier un rôle</h1>
+        </div>
+        <div class="well">
+
+            {{ form_start(edit_form) }}
+            <div class="form-group">
+                {{ form_widget(edit_form) }}
+            </div>
+            <input class="btn btn-success" type="submit" value="Modifier" />
+            {{ form_end(edit_form) }}
+        </div>
+    </article>
+    </div>
+{% endblock %}

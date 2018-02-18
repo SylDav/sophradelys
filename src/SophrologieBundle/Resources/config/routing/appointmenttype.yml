@@ -1,0 +1,24 @@
+appointmenttype_index:
+    path:     /
+    defaults: { _controller: "SophrologieBundle:AppointmentType:index" }
+    methods:  GET
+
+appointmenttype_show:
+    path:     /{id}/show
+    defaults: { _controller: "SophrologieBundle:AppointmentType:show" }
+    methods:  GET
+
+appointmenttype_new:
+    path:     /new
+    defaults: { _controller: "SophrologieBundle:AppointmentType:new" }
+    methods:  [GET, POST]
+
+appointmenttype_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SophrologieBundle:AppointmentType:edit" }
+    methods:  [GET, POST]
+
+appointmenttype_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SophrologieBundle:AppointmentType:delete" }
+    methods:  GET

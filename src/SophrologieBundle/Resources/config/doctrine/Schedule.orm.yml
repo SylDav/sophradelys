@@ -1,0 +1,14 @@
+SophrologieBundle\Entity\Schedule:
+    type: entity
+    table: null
+    repositoryClass: SophrologieBundle\Repository\ScheduleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        time:
+            type: time
+    lifecycleCallbacks: {  }

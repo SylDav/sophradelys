@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <article class="col-md-12">
+                <div class="page-header">
+                    <a href="{{ path('monCompte_index') }}" class="btn btn-success pull-right">Retour</a>
+                    <h1>Mes informations</h1>
+                </div>
+                <div class="well">
+                    <!--<a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary">Modifier</a>-->
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Adresse Mail</th>
+                                <td>{{ user.mail }}</td>
+                            </tr>
+                            <tr>
+                                <th>Numéro de téléphone</th>
+                                <td>{{ user.phonenumber }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </article>
+    </div>
+{% endblock %}

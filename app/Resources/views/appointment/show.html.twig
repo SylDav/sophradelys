@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <article class="col-md-12">
+        <div class="page-header">
+            {% if(is_granted('ROLE_ADMIN')) %}
+                <a href="{{ path('appointment_admin') }}" class="btn btn-success pull-right">Retour</a>
+            {% elseif(is_granted('ROLE_USER')) %}
+                <a href="{{ path('user_index') }}" class="btn btn-success pull-right">Retour</a>
+            {% endif %}
+            <h1>Rendez-vous du {{ appointment.date|date("d/m/Y") }} à {{ appointment.date|date('H:i') }}</h1>
+        </div>
+        <div class="well">
+            {% if appointment.users|length == 1 %}
+                {% for user in appointment.users %}
+                    {% if appointment.date > date()|date_modify("+1 day") %}
+                        <a href="{{ path('appointment_change', { 'id': appointment.id }) }}" class="btn btn-primary pull-right">Modifier le rendez-vous</a>
+                    {% endif %}
+
+                    <h2><a href="{{ path('user_show', { 'id': user.id }) }}" style="text-decoration: none; color: black;">{{ user }}</a></h2>
+
+
+                    {% if appointment.theme == null %}
+                        {% for user in appointment.users %}
+                            Premier rendez-vous / Nouveau thème
+                        {% endfor %}
+                    {% else %}
+                        {% for user in appointment.users %}
+                            <h3>Thème de la session :</h3> <h4>{{ appointment.theme }}</h4>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+
+                <hr />
+            {% endif %}
+
+
+            {% for user in appointment.users %}
+                {% if user.themes|length == 0 %}
+                    <a href="{{ path('user_historic', { 'id': user.id }) }}" class="btn btn-primary">Commencer la séance</a>
+                {% else %}
+                    <a href="{{ path('user_historic', { 'id': user.id }) }}" class="btn btn-primary">Commencer la séance.</a>
+                {% endif %}
+            {% endfor %}
+
+
+            {% if appointment.users|length > 1 %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="list-group">
+                            <li class="list-group-item active text-center">
+                                <b>Participants :</b><
+                            </li>
+                            {% for user in appointment.users %}
+                                <li>{{ user }}</li>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% elseif appointment.users|length == 1 %}
+                <div class="row">
+                {% if appointment.commentary != null %}
+                    <div class="col-md-6">
+                        <div class="list-group">
+                            <li class="list-group-item active text-center">
+                                <b>Commentaire</b>
+                            </li>
+                            {{ appointment.commentary }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if appointment.commentaryClient != null %}
+                    <div class="col-md-6">
+                        <div class="list-group">
+                            <li class="list-group-item active text-center">
+                                <b>Remarque du client</b>
+                            </li>
+                            {{ appointment.commentaryClient }}
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </article>
+</div>
+{% endblock %}

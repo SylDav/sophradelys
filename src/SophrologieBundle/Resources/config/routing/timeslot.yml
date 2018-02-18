@@ -1,0 +1,24 @@
+timeslot_index:
+    path:     /
+    defaults: { _controller: "SophrologieBundle:Timeslot:index" }
+    methods:  GET
+
+timeslot_show:
+    path:     /{id}/show
+    defaults: { _controller: "SophrologieBundle:Timeslot:show" }
+    methods:  GET
+
+timeslot_new:
+    path:     /new
+    defaults: { _controller: "SophrologieBundle:Timeslot:new" }
+    methods:  [GET, POST]
+
+timeslot_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SophrologieBundle:Timeslot:edit" }
+    methods:  [GET, POST]
+
+timeslot_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SophrologieBundle:Timeslot:delete" }
+    methods:  GET
